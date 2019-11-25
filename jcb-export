@@ -1,0 +1,121 @@
+===================  test-gradle-java ================================================
+apiVersion: v1
+kind: Template
+labels:
+  template: custom-gradle-to-spring-server
+  group: custom-gradle-to-spring-server
+metadata:
+  annotations:
+    iconClass: icon-jenkins
+    tags: custom-gradle-to-spring-server, spring, java, spring-boot
+  name: custom-gradle-to-spring-server
+objects:
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: gradle-java-builder
+      labels:
+        app: gradle-java-builder
+    spec:
+      runPolicy: Serial
+      source:
+        git:
+          uri: ssh://git@stash.delta.sbrf.ru:7999/acq/test-gradle-java.git
+          ref: develop
+        contextDir: .
+        sourceSecret:
+          name: acq-git-repo-secret
+      strategy:
+        dockerStrategy:
+          dockerFilePath: Dockerfile
+      resources:
+        limits:
+          cpu: 2
+          memory: 4Gi
+      output:
+        to:
+          kind: ImageStreamTag
+          name: gradle-java-builder:latest
+      triggers:
+        - type: ConfigChange
+      successfulBuildsHistoryLimit: 5
+      failedBuildsHistoryLimit: 5
+  - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      name: gradle-java-builder
+      
+---------------------------------------------------------------------------------
+FROM registry.ca.sbrf.ru/base/redhat/rhel7:7.7-310
+USER root
+COPY bin/ /opt/downloads
+RUN cd /opt/downloads && chmod +x *.sh && ./install.sh
+----------------  install.sh ---------------------------------------------------------
+tar xzf jdk-8u151-linux-x64.tar.gz -C /opt
+tar xzf gradle-5.6-bin.tar.gz -C /opt
+chmod +x /opt/gradle-5.6/bin/gradle
+----------------- env.sh  -------------------------------------------------------------
+export GRADLE_HOME=/opt/gradle-5.6
+export JAVA_HOME=/opt/jdk1.8.0_151
+export PATH=$PATH:$JAVA_HOME/bin:$GRADLE_HOME/bin
+
+===============================  jcb-export  ====================================================
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: openshift-acquiring-template
+objects:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: openshift-acquiring
+    name: openshift-acquiring
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: DockerImage
+        name: docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/openshift-acquiring
+    postCommit: {}
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    runPolicy: Serial
+    source:
+      git:
+        ref: master
+        uri: ssh://git@stash.delta.sbrf.ru:7999/acq/openshift-acquiring.git
+      sourceSecret:
+        name: openshift-acquiring
+      type: Git
+    strategy:
+      dockerStrategy:
+        env:
+        - name: version
+        from:
+          kind: DockerImage
+          name: java:8
+      type: Docker
+    successfulBuildsHistoryLimit: 5
+    triggers: []
+  status:
+    lastVersion: 0
+----------------------------------------------------------
+FROM docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/gradle-java-builder:latest
+USER root
+COPY . /opt/build_dir
+RUN cd /opt/downloads && source ./env.sh \
+    && cd /opt/build_dir && gradle :bootJar \
+    && mkdir -p /opt/myapp && cp /opt/build_dir/build/libs/*.jar /opt/myapp/app.jar
+EXPOSE 8888 8080 5005
+CMD source /opt/downloads/env.sh && java -jar /opt/myapp/app.jar
+
+
+
