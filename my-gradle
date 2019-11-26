@@ -1,0 +1,81 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"build.openshift.io/v1","kind":"BuildConfig","metadata":{"annotations":{},"labels":{"app":"openshift-demo-gradle"},"name":"openshift-demo-gradle","namespace":"ci00611271-idevlg-pprbacquiringift"},"spec":{"failedBuildsHistoryLimit":5,"nodeSelector":null,"output":{"to":{"kind":"DockerImage","name":"docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/openshift-demo-gradle"}},"postCommit":{},"resources":{"limits":{"cpu":"1","memory":"2Gi"},"requests":{"cpu":"1","memory":"2Gi"}},"runPolicy":"Serial","source":{"binary":{},"type":"Binary"},"strategy":{"dockerStrategy":{},"type":"Docker"},"successfulBuildsHistoryLimit":5,"triggers":[]},"status":{"lastVersion":0}}
+  creationTimestamp: '2019-11-25T11:43:07Z'
+  labels:
+    app: openshift-demo-gradle
+  name: openshift-demo-gradle
+  namespace: ci00611271-idevlg-pprbacquiringift
+  resourceVersion: '1116311739'
+  selfLink: >-
+    /apis/build.openshift.io/v1/namespaces/ci00611271-idevlg-pprbacquiringift/buildconfigs/openshift-demo-gradle
+  uid: bfd36adf-0f78-11ea-b887-005056b91283
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: DockerImage
+      name: >-
+        docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/openshift-demo-gradle
+  postCommit: {}
+  resources:
+    limits:
+      cpu: '1'
+      memory: 2Gi
+    requests:
+      cpu: '1'
+      memory: 2Gi
+  runPolicy: Serial
+ source:
+    binary: {}
+    type: Binary
+  strategy:
+    dockerStrategy: {}
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers: []
+status:
+  lastVersion: 1
+=============================================================================================================
+Receiving source from STDIN as archive ... 	 
+	
+	Pulling image registry.ca.sbrf.ru/redhat/redhat-openjdk-18/openjdk18-openshift:1.5-14.1539812388 ... 
+	Pulled 1/5 layers, 21% complete 
+	Pulled 2/5 layers, 41% complete 
+	Pulled 3/5 layers, 67% complete 
+	Pulled 4/5 layers, 90% complete 
+	Pulled 5/5 layers, 100% complete 
+	Extracting 
+	Step 1/5 : FROM registry.ca.sbrf.ru/redhat/redhat-openjdk-18/openjdk18-openshift:1.5-14.1539812388 
+	---> c1bf72469139 
+	Step 2/5 : COPY demo-gradle-0.0.1-SNAPSHOT.jar /deployments/demo-gradle.jar 
+	---> aea1aceecc5b 
+	Removing intermediate container 24faa52b8dcc 
+	Step 3/5 : ENTRYPOINT java -jar /deployments/demo-gradle.jar 
+	---> Running in f460f94bad9a 
+	---> a0a635ecacb9 
+	Removing intermediate container f460f94bad9a 
+	Step 4/5 : ENV "OPENSHIFT_BUILD_NAME" "openshift-demo-gradle-1" "OPENSHIFT_BUILD_NAMESPACE" "ci00611271-idevlg-pprbacquiringift" 
+	---> Running in 276b98167e71 
+	---> 41f123abafc9 
+	Removing intermediate container 276b98167e71 
+	Step 5/5 : LABEL "io.openshift.build.name" "openshift-demo-gradle-1" "io.openshift.build.namespace" "ci00611271-idevlg-pprbacquiringift" 
+	---> Running in c44f7206270e 
+	---> 510b158b1951 
+	Removing intermediate container c44f7206270e 
+	Successfully built 510b158b1951 
+	
+	Pushing image docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/openshift-demo-gradle ... 
+	Pushed 1/6 layers, 18% complete 
+	Pushed 2/6 layers, 41% complete 
+	Pushed 3/6 layers, 55% complete 
+	Pushed 4/6 layers, 73% complete 
+	Pushed 5/6 layers, 97% complete 
+	Pushed 6/6 layers, 100% complete 
+	Push successful
+
+
