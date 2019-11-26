@@ -60,54 +60,7 @@ export JAVA_HOME=/opt/jdk1.8.0_151
 export PATH=$PATH:$JAVA_HOME/bin:$GRADLE_HOME/bin
 =================================================================================================
 ===============================  jcb-export  ====================================================
-apiVersion: template.openshift.io/v1
-kind: Template
-metadata:
-  creationTimestamp: null
-  name: openshift-acquiring-template
-objects:
-- apiVersion: build.openshift.io/v1
-  kind: BuildConfig
-  metadata:
-    labels:
-      app: openshift-acquiring
-    name: openshift-acquiring
-  spec:
-    failedBuildsHistoryLimit: 5
-    nodeSelector: null
-    output:
-      to:
-        kind: DockerImage
-        name: docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/openshift-acquiring
-    postCommit: {}
-    resources:
-      limits:
-        cpu: "1"
-        memory: 2Gi
-      requests:
-        cpu: "1"
-        memory: 2Gi
-    runPolicy: Serial
-    source:
-      git:
-        ref: master
-        uri: ssh://git@stash.delta.sbrf.ru:7999/acq/openshift-acquiring.git
-      sourceSecret:
-        name: openshift-acquiring
-      type: Git
-    strategy:
-      dockerStrategy:
-        env:
-        - name: version
-        from:
-          kind: DockerImage
-          name: java:8
-      type: Docker
-    successfulBuildsHistoryLimit: 5
-    triggers: []
-  status:
-    lastVersion: 0
-----------------------------------------------------------
+
 FROM docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/gradle-java-builder:latest
 USER root
 COPY . /opt/build_dir
