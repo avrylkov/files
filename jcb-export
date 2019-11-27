@@ -60,7 +60,50 @@ export JAVA_HOME=/opt/jdk1.8.0_151
 export PATH=$PATH:$JAVA_HOME/bin:$GRADLE_HOME/bin
 =================================================================================================
 ===============================  jcb-export  ====================================================
-
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  creationTimestamp: '2019-11-22T13:04:01Z'
+  labels:
+    app: testjcb
+    group: custom-gradle-to-spring-server
+    template: custom-gradle-to-spring-server
+    version: 0.0.1
+  name: testjcb
+  namespace: ci00611271-idevlg-pprbacquiringift
+  resourceVersion: '1105929989'
+  selfLink: >-
+    /apis/build.openshift.io/v1/namespaces/ci00611271-idevlg-pprbacquiringift/buildconfigs/testjcb
+  uid: 8db673f9-0d28-11ea-9586-005056b9517d
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'testjcb:latest'
+  postCommit: {}
+  resources:
+    limits:
+      cpu: '1'
+      memory: 1Gi
+  runPolicy: Serial
+  source:
+    git:
+      ref: master
+      uri: 'ssh://git@stash.delta.sbrf.ru:7999/acq/jcb-export.git'
+    sourceSecret:
+      name: acq-git-repo-secret
+    type: Git
+  strategy:
+    dockerStrategy: {}
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+    - type: ConfigChange
+status:
+  lastVersion: 5
+---------------------------------------------------------------------------------------------
 FROM docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/gradle-java-builder:latest
 USER root
 COPY . /opt/build_dir
