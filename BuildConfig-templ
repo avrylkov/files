@@ -1,0 +1,40 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: openshift-acquiring-template
+objects:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: tm-reconciliation
+    name: tm-reconciliation
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: tm-reconciliation:latest
+    postCommit: {}
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    runPolicy: Serial
+    source:
+      git:
+        ref: master
+        uri: ssh://git@stash.delta.sbrf.ru:7999/acq/acq-tm-comparator.git
+      sourceSecret:
+        name: acq-git-repo-secret
+      type: Git
+    strategy:
+      dockerStrategy:
+        dockerfilePath: Dockerfile
+    successfulBuildsHistoryLimit: 5
+    triggers:
+      - type: ConfigChange
