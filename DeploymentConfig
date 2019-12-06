@@ -1,0 +1,118 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: '2019-11-27T16:32:33Z'
+  generation: 18
+  labels:
+    app: tm-reconciliation-deploy
+  name: tm-reconciliation-deploy
+  namespace: ci00611271-idevlg-pprbacquiringift
+  resourceVersion: '1133084224'
+  selfLink: >-
+    /apis/apps.openshift.io/v1/namespaces/ci00611271-idevlg-pprbacquiringift/deploymentconfigs/tm-reconciliation-deploy
+  uid: 83941863-1133-11ea-9586-005056b9517d
+spec:
+  replicas: 1
+  selector:
+    app: tm-reconciliation-deploy
+    deploymentconfig: tm-reconciliation-deploy
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+      creationTimestamp: null
+      labels:
+        app: tm-reconciliation-deploy
+        deploymentconfig: tm-reconciliation-deploy
+    spec:
+      containers:
+        - env:
+            - name: spring_datasource_url
+              value: 'jdbc:oracle:thin:@10.116.181.47:1521:pprift01'
+            - name: kafka_bootstrap_servers
+              value: '10.116.234.48:29092'
+          envFrom:
+            - secretRef:
+                name: acq-datasource
+          image: >-
+            docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/tm-reconciliation@sha256:04bd2358278beaf755f417265d578a1db973395dc0d85df490055a3096d94291
+          imagePullPolicy: Always
+          name: tm-reconciliation-deploy
+          ports:
+            - containerPort: 5005
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8888
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '2'
+              memory: 1000Mi
+            requests:
+              cpu: 500m
+              memory: 1000Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - tm-reconciliation-deploy
+        from:
+          kind: ImageStreamTag
+          name: 'tm-reconciliation:latest'
+          namespace: ci00611271-idevlg-pprbacquiringift
+        lastTriggeredImage: >-
+          docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/tm-reconciliation@sha256:04bd2358278beaf755f417265d578a1db973395dc0d85df490055a3096d94291
+      type: ImageChange
+status:
+  availableReplicas: 1
+  conditions:
+    - lastTransitionTime: '2019-11-28T08:59:07Z'
+      lastUpdateTime: '2019-11-28T08:59:09Z'
+      message: >-
+        replication controller "tm-reconciliation-deploy-15" successfully rolled
+        out
+      reason: NewReplicationControllerAvailable
+      status: 'True'
+     type: Progressing
+    - lastTransitionTime: '2019-11-30T00:08:50Z'
+      lastUpdateTime: '2019-11-30T00:08:50Z'
+      message: Deployment config has minimum availability.
+      status: 'True'
+      type: Available
+  details:
+    causes:
+      - imageTrigger:
+          from:
+            kind: DockerImage
+            name: >-
+              docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/tm-reconciliation@sha256:04bd2358278beaf755f417265d578a1db973395dc0d85df490055a3096d94291
+        type: ImageChange
+    message: image change
+  latestVersion: 15
+  observedGeneration: 18
+  readyReplicas: 1
+  replicas: 1
+  unavailableReplicas: 0
+  updatedReplicas: 1
