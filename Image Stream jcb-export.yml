@@ -1,0 +1,41 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"image.openshift.io/v1","kind":"ImageStream","metadata":{"annotations":{},"generation":1,"name":"jcb-export","namespace":"ci00611271-idevlg-pprbacquiringift"},"spec":{"lookupPolicy":{"local":false},"tags":[{"annotations":null,"from":{"kind":"DockerImage","name":"registry.ca.sbrf.ru/pprb-dev/ci00682834_csdo_dev/acq-jcb-export:0.0.1-44"},"importPolicy":{},"name":"0.0.1-44","referencePolicy":{"type":"Source"}}]}}
+    openshift.io/image.dockerRepositoryCheck: '2020-01-17T12:39:29Z'
+  creationTimestamp: '2020-01-17T12:30:52Z'
+  generation: 4
+  name: jcb-export
+  namespace: ci00611271-idevlg-pprbacquiringift
+  resourceVersion: '1317199886'
+  selfLink: >-
+    /apis/image.openshift.io/v1/namespaces/ci00611271-idevlg-pprbacquiringift/imagestreams/jcb-export
+  uid: 331e6bc3-3925-11ea-b887-005056b91283
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+       name: >-
+          registry.ca.sbrf.ru/pprb-dev/ci00682834_csdo_dev/acq-jcb-export:0.0.1-44
+      generation: 4
+      importPolicy: {}
+      name: 0.0.1-44
+      referencePolicy:
+        type: Source
+status:
+  dockerImageRepository: >-
+    docker-registry.default.svc:5000/ci00611271-idevlg-pprbacquiringift/jcb-export
+  tags:
+    - items:
+        - created: '2020-01-17T12:39:29Z'
+          dockerImageReference: >-
+            registry.ca.sbrf.ru/pprb-dev/ci00682834_csdo_dev/acq-jcb-export@sha256:ce4247032f4e8cb7c1146fd42bb8615d839e6c484a8fe6d273c6197385146b29
+          generation: 4
+          image: >-
+            sha256:ce4247032f4e8cb7c1146fd42bb8615d839e6c484a8fe6d273c6197385146b29
+      tag: 0.0.1-44
