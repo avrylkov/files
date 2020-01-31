@@ -1,0 +1,10 @@
+oc describe secret robot-jenkins-token-7wj6h
+oc login --token=
+
+In the directory create a file named Dockerfile 
+Create a new build for your application:
+   oc new-build --strategy docker --binary --name my-app
+Start a binary build using the local directory’s content:
+   oc start-build my-app --from-dir . --follow
+Deploy the application using new-app, then create a route for it:
+   oc new-app my-app
