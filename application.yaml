@@ -1,0 +1,49 @@
+acq-producer-loader:
+  kafka:
+    topic:
+      input: distribution-dto
+      output:
+        organization-distribution-request: organization-distribution-request
+        subdivision-distribution-request: subdivision-distribution-request
+        tracking: output-default
+  batchSize: 100
+
+logging:
+  level:
+    com.sbt.acquiring.distributor: trace
+---
+spring:
+  kafka:
+    client-id: acq-distribution-entity-loader
+    bootstrap-servers:
+      - localhost:9092
+    streams:
+      auto-startup: false
+---
+spring:
+  application:
+    name: acq-distribution-entity-loader
+  datasource:
+    url: jdbc:oracle:thin:@10.106.145.177:1521:acq
+    username: user
+    password: xxx
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        id.sequence.increment_size_mismatch_strategy: FIX
+        globally_quoted_identifiers: true
+        hbm2ddl:
+          auto: none
+
+---
+management:
+  endpoint:
+    health:
+      show-details: always
