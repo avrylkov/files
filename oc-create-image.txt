@@ -8,3 +8,6 @@ Start a binary build using the local directory’s content:
    oc start-build my-app --from-dir . --follow
 Deploy the application using new-app, then create a route for it:
    oc new-app my-app
+
+---------------
+https://github.com/openshift/origin/tree/master/examples/sample-app
