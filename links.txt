@@ -1,2 +1,4 @@
 Kafka tutorial #4 - Avro and the Schema Registry
 https://aseigneurin.github.io/2018/08/02/kafka-tutorial-4-avro-and-schema-registry.html
+
+Problem can be solved by configuring properties of Far window. Increasing a value of right click at title bar -> Properties -> Layout -> Screen buffer size -> Height leads to a proper result.
