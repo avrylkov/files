@@ -3,3 +3,7 @@ https://aseigneurin.github.io/2018/08/02/kafka-tutorial-4-avro-and-schema-regist
 
 Problem can be solved by configuring properties of Far window. Increasing a value of right click at title bar -> Properties -> Layout -> Screen buffer size -> Height leads to a proper result.
 If you run Farmanager from ConEmu you could run the command and append -new_console:c to it to put it in a new console with the press any key to continue output. You will be able to scroll up
+
+
+openshift-4-on-your-laptop
+https://haralduebele.blog/2019/09/13/red-hat-openshift-4-on-your-laptop/
