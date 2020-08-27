@@ -7,3 +7,5 @@ If you run Farmanager from ConEmu you could run the command and append -new_cons
 
 openshift-4-on-your-laptop
 https://haralduebele.blog/2019/09/13/red-hat-openshift-4-on-your-laptop/
+https://cloud.redhat.com/openshift/install/crc/installer-provisioned
+
