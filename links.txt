@@ -13,3 +13,5 @@ https://odo.dev/docs/deploying-a-devfile-using-odo/
 
 C:\Users\Rylkov1-AV\.deeplearning4j\models\tinyyolo
 
+java -Xmx2048m -Xms512m -jar c:/work/pi/raspberry-0.0.1-SNAPSHOT.jar --spring.config.location=c:/work/pi/my.properties
+
