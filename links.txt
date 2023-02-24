@@ -43,3 +43,5 @@ logging.file.name=G:/MyTemp/my.log
 
 http://localhost:8080/train2?name=auto&folder=auto
 
+-Djava.library.path=
+
