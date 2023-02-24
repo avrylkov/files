@@ -39,3 +39,7 @@ train.voice.path=G:/MyTemp/
 threshold.distance=18.0
 #logging file
 logging.file.name=G:/MyTemp/my.log
+
+
+http://localhost:8080/train2?name=auto&folder=auto
+
