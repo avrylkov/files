@@ -10,3 +10,6 @@ https://haralduebele.blog/2019/09/13/red-hat-openshift-4-on-your-laptop/
 https://cloud.redhat.com/openshift/install/crc/installer-provisioned
 https://code-ready.github.io/crc/#starting-the-virtual-machine_gsg
 https://odo.dev/docs/deploying-a-devfile-using-odo/
+
+C:\Users\Rylkov1-AV\.deeplearning4j\models\tinyyolo
+
