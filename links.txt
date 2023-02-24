@@ -15,3 +15,27 @@ C:\Users\Rylkov1-AV\.deeplearning4j\models\tinyyolo
 
 java -Xmx2048m -Xms512m -jar c:/work/pi/raspberry-0.0.1-SNAPSHOT.jar --spring.config.location=c:/work/pi/my.properties
 
+
+application.properties
+
+server.port=8080
+motor.speed=0.9
+motor.turn=true
+myhome.path=G:/MyTemp/
+#
+save.picture=false
+save.picture.no.detect=false
+stop.after.save=false
+picture.capture.delay=300
+#
+nearer.area=0.05
+away.area=0.08
+move.delay=4
+turn.delay=3
+pwm.frequency=50
+#
+train.image.path=G:/MyTemp/img/
+train.voice.path=G:/MyTemp/
+threshold.distance=18.0
+#logging file
+logging.file.name=G:/MyTemp/my.log
