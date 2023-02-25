@@ -22,4 +22,7 @@ java -Dfile.encoding=UTF-8 -classpath G:\MyTemp\pi\BOOT-INF\classes;G:\MyTemp\pi
 http://localhost:8080/train2?name=auto&folder=auto
 
 
+token
+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
+
 
