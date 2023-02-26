@@ -23,6 +23,6 @@ http://localhost:8080/train2?name=auto&folder=auto
 
 
 token
-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
+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
 
 
