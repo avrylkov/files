@@ -21,8 +21,7 @@ java -Dfile.encoding=UTF-8 -classpath G:\MyTemp\pi\BOOT-INF\classes;G:\MyTemp\pi
 
 http://localhost:8080/train2?name=auto&folder=auto
 
+package -DskipTests -Djavacpp.platform=windows-x86_64 -f pom.xml
 
-token
-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
 
 
