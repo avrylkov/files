@@ -1,0 +1,99 @@
+{
+  "org": {
+    "orgNum": "72212003",
+    "isNew": false,
+	"iposSegmentParams": [],
+    "agreements": [
+      {
+        "accountNumber": "40102810800000010001",
+        "advPaySrvFee": false,
+        "agreemtNum": "React 8",
+        "isNew": true,
+        "bankId": "2482",
+        "billingMethod": "2",
+        "blockCalcDelay": "1",
+        "feeSource": "1",
+        "feeType": "1",
+        "addAgreemts": [],
+        "fullRemittances": [
+          {
+            "dayOfMonth": 0,
+            "numDaysForBlock": 0,
+            "period": 0
+          }
+        ],
+        "rates": [],
+        "shops": [],
+        "reportType": "2",
+        "rtsExportSchedule": "2",
+        "servicePaymentParams": {
+          "addAgreemtNum": "123321",
+          "signDt": "2023-06-19",
+          "startDt": "2023-06-19",
+          "serviceFeeWay": "1",
+          "debitReportTypes": "1",
+          "purpose": "Комиссия за сервисное обслуживание по договору №[НОМЕР_ДЭ] от [ДАТА_ДЭ] за период [ПЕРИОД_СО] по доп. соглашению №[НОМЕР_ДС] от [ДАТА_ДС]. Кол-во терминалов: [КОЛ_ТЕРМ]",
+          "demandAccountOnOrganization": false,
+          "ndsPaymentPurpose": "НДС. Комиссия за сервисное обслуживание по договору №[НОМЕР_ДЭ] от [ДАТА_ДЭ] за период [ПЕРИОД_СО]. Кол-во терминалов: [КОЛ_ТЕРМ]",
+          "daysToCreateReport": 10,
+          "paymentPurposeCash": "Плата за настройку и подключение Смарт терминала по договору №[НОМЕР_ДЭ] от [ДАТА_ДЭ] за период [ПЕРИОД_СО]. Кол-во терминалов: [КОЛ_ТЕРМ]",
+          "vatPaymentPurposeCash": "НДС. Плата за настройку и подключение Смарт терминала по договору №[НОМЕР_ДЭ] от [ДАТА_ДЭ] за период [ПЕРИОД_СО]. Кол-во терминалов: [КОЛ_ТЕРМ]"
+        },
+        "productDocuments": [],
+        "boxSolution": false,
+        "contractType": "SEMI_OFFER",
+        "notWithholdMerchant": false,
+        "productType": "1",
+        "firstTripRisk": "1",
+        "hybridPayments": false,
+        "applyPurposePayment": false,
+        "refundTransferCurrency": "2",
+        "multiCurrency": false,
+        "multiCurrencyOperation": {
+          "usd": {
+            "currentAccount": "react usd",
+            "clearingBank": "react usd bank",
+            "codeSwift": "swift react",
+            "transactionCostPayer": "1",
+            "calcAccounts": false
+          },
+          "eur": {
+            "currentAccount": "457",
+            "clearingBank": "react eur test",
+            "codeSwift": "swift reac",
+            "transactionCostPayer": "1",
+            "calcAccounts": false
+          }
+        },
+        "payerStatus": "1",
+        "fuelDoProcess": false,
+        "presentLifeDoProcess": false,
+        "paymentOrderForMerchants": false,
+        "unitedPaymentOrder": false,
+        "accountingAllTime": false,
+        "groupByPaymentSystems": false,
+        "reportEmails": "",
+        "bankPaymentAgent": {
+          "freeNdsBpa": false,
+          "acqCashoutPartBpa": false,
+          "groupCommission": false,
+          "regCashTaxation": false,
+          "addReportCash": false
+        },
+        "generateReport": {
+          "generateReport": false,
+          "standartReportEnabled": false,
+          "reportTypes": [],
+          "specialReportEnabled": false
+        }
+      }
+    ],
+    "clientDocuments": [],
+    "ratingReasons": []
+  },
+  "operUid": "d0f8e8697c544a86a33255093fce8a1b",
+  "rqTm": "11.08.2023 15:35:52",
+  "rqUid": "8d9b6a1d10e44833a671541741375851",
+  "spName": "ACQUIRING-UI",
+  "systemId": "ACQUIRING-CORE"
+}
