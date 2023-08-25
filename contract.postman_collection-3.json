@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "e9e7a502-177c-4d27-a231-f53db1c78b28",
+		"name": "contract",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24832022"
+	},
+	"item": [
+		{
+			"name": "core-acq-cars",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"ListOfAgreemt\": [\r\n\t\t{\r\n\t\t\t\"AgreemtPprbId\": \"536658003\",\r\n\t\t\t\"ProductDocuments\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"DocType\": \"CLIENT_DIGITAL\",\r\n                    \"DocNumber\": \"111HHHH\",\r\n                    \"DocDate\": \"2023-04-18\",\r\n                    \"DocKindCode\": \"1000395\",     \r\n                    \"DocFormatCode\": \"1\",\r\n                    \"EcmStorageCode\": \"st\",\r\n                    \"EcmFile\": \"file\",\r\n                    \"EcmFolder\": \"folder\",\r\n                    \"ContractTb\": \"67\",\r\n                    \"ContractOsb\":  \"0029\",\r\n                    \"CreatorId\":\"creator\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t],\r\n\t\"OperUid\": \"029554feca1b489288b1cd190d745119\",\r\n\t\"RqTm\": \"2022-11-23T15:22:08+03:00\",\r\n\t\"RqUid\": \"029554feca1b489288b1cd190d745119\",\r\n\t\"SpName\": \"urn:sbrfsystems:99-pprbacqtm\",\r\n\t\"SystemId\": \"urn:sbrfsystems:99-pprb\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://core-acq-route-ci00611271-iiftgen1dm-idevgen-acqift-m.apps.ift-gen1-dm.delta.sbrf.ru/update?scenario=contract_product_documents&serviceName=my-service&login=user",
+					"protocol": "http",
+					"host": [
+						"core-acq-route-ci00611271-iiftgen1dm-idevgen-acqift-m",
+						"apps",
+						"ift-gen1-dm",
+						"delta",
+						"sbrf",
+						"ru"
+					],
+					"path": [
+						"update"
+					],
+					"query": [
+						{
+							"key": "scenario",
+							"value": "contract_product_documents"
+						},
+						{
+							"key": "serviceName",
+							"value": "my-service"
+						},
+						{
+							"key": "login",
+							"value": "user"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "core-acq-input-org",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"org\": {\r\n\t\t\"isNew\": true,\r\n\t\t\"orgNum\": \"\",\r\n\t\t\"bank\": {\r\n\t\t\t\"agencyId\": \"1004\",\r\n\t\t\t\"regionId\": \"38\"\r\n\t\t},\r\n\t\t\"businessType\": \"OOO\",\r\n\t\t\"clientSegment\": \"MICRO\",\r\n\t\t\"kpp\": \"413491349\",\r\n\t\t\"iposSegmentParams\": [],\r\n\t\t\"name\": \"ООО спасибо опции\",\r\n\t\t\"orgAddress\": {\r\n\t\t\t\"buildingCode\": \"794\",\r\n\t\t\t\"fiasId\": \"848ec71d-bc1d-4c14-8824-68a0a02198d6\",\r\n\t\t\t\"house\": \"98А\",\r\n\t\t\t\"kladrId\": \"5004200013500\",\r\n\t\t\t\"postalCode\": \"143081\",\r\n\t\t\t\"street\": \"Можайское\",\r\n\t\t\t\"streetCode\": \"793\"\r\n\t\t},\r\n\t\t\"orgFinManagerEmail1\": \"ksv@rvio.org\",\r\n\t\t\"orgFinManagerFio1\": \"Ерхов Илья Евгеньевич\",\r\n\t\t\"orgManagerFullName\": \"Ерхов Илья Евгеньевич\",\r\n\t\t\"orgManagerPhoneNum\": \"79169728150\",\r\n\t\t\"partnerLevel\": \"LOCAL\",\r\n\t\t\"inn\": \"8874568786\",\r\n\t\t\"agreements\": [],\r\n\t\t\"clientDocuments\": [],\r\n\t\t\"ratingReasons\": []\r\n\t},\r\n\t\"operUid\": \"0ec18d3487ddae69d0f4e553991e774d\",\r\n\t\"rqTm\": \"2022-10-17T17:56:57\",\r\n\t\"rqUid\": \"0ec18d3487ddae69d0f4e553991e774d\",\r\n\t\"spName\": \"urn:sbrfsystems:99-tortuga\",\r\n\t\"systemId\": \"urn:sbrfsystems:99-pprb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/input?scenario=add-organization&login=user&serviceName=UI",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"input"
+					],
+					"query": [
+						{
+							"key": "scenario",
+							"value": "add-organization"
+						},
+						{
+							"key": "login",
+							"value": "user"
+						},
+						{
+							"key": "serviceName",
+							"value": "UI"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "core-acq-input-org-contr",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"org\": {\r\n\t\t\"isNew\": false,\r\n\t\t\"orgNum\": \"1143834003\",\t\t\r\n\t\t\"agreements\": [\r\n\t\t\t{\r\n\t\t\t\t\"accountNumber\": \"30233810300020800000\",\r\n\t\t\t\t\"agreementEvotor\": false,\r\n\t\t\t\t\"agreementQr\": false,\r\n\t\t\t\t\"agreementSmartpos\": false,\r\n\t\t\t\t\"agreemtNum\": \"спасибо опции\",\r\n\t\t\t\t\"bankId\": \"044525225\",\r\n\t\t\t\t\"billingMethod\": \"DYNAMIC\",\r\n\t\t\t\t\"blockCalcDelay\": \"0\",\r\n\t\t\t\t\"feeSource\": \"MERCHANT\",\r\n\t\t\t\t\"feeType\": \"PERCENT\",\r\n\t\t\t\t\"isNew\": true,\r\n\t\t\t\t\"addAgreemts\": [],\r\n\t\t\t\t\"fullRemittances\": [],\r\n\t\t\t\t\"rates\": [],\r\n\t\t\t\t\"shops\": [],\r\n\t\t\t\t\"regDt\": \"2022-11-14T00:00:00\",\r\n\t\t\t\t\"reportType\": \"ONLINE\",\r\n\t\t\t\t\"rtsExportSchedule\": \"1\",\r\n\t\t\t\t\"serviceLevel\": \"STANDART\",\r\n\t\t\t\t\"servicePaymentParams\": {\r\n\t\t\t\t\t\"addAgreemtNum\": \"40-1025-РБ-104982\",\r\n\t\t\t\t\t\"signDt\": \"2022-10-17T00:00:00\",\r\n\t\t\t\t\t\"startDt\": \"2022-11-01T00:00:00\",\r\n\t\t\t\t\t\"serviceFeeWay\": \"REGISTER\",\r\n\t\t\t\t\t\"debitReportTypes\": \"1\",\r\n\t\t\t\t\t\"purpose\": \"Комиссия за сервисное обслуживание по договору №[НОМЕР_ДЭ] от [ДАТА_ДЭ] за период [ПЕРИОД_СО] по доп. соглашению №[НОМЕР_ДС] от [ДАТА_ДС]. Без НДС. Кол-во терминалов: [КОЛ_ТЕРМ]\",\r\n\t\t\t\t\t\"demandAccountOnOrganization\": true,\r\n\t\t\t\t\t\"ndsPaymentPurpose\": \"НДС. Комиссия за сервисное обслуживание по договору №[НОМЕР_ДЭ] от [ДАТА_ДЭ] за период [ПЕРИОД_СО] за [КОЛ_ТЕРМ] терминалов по доп. соглашению №[НОМЕР_ДС] от [ДАТА_ДС]\"\r\n\t\t\t\t},\r\n\t\t\t\t\"productDocuments\": []\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"clientDocuments\": [],\r\n\t\t\"ratingReasons\": []\r\n\t},\r\n\t\"operUid\": \"0ec18d3487ddae69d0f4e553991e774d\",\r\n\t\"rqTm\": \"2022-10-17T17:56:57\",\r\n\t\"rqUid\": \"0ec18d3487ddae69d0f4e553991e774d\",\r\n\t\"spName\": \"urn:sbrfsystems:99-tortuga\",\r\n\t\"systemId\": \"urn:sbrfsystems:99-pprb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/input?scenario=add-organization-contract&login=user&serviceName=UI",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"input"
+					],
+					"query": [
+						{
+							"key": "scenario",
+							"value": "add-organization-contract"
+						},
+						{
+							"key": "login",
+							"value": "user"
+						},
+						{
+							"key": "serviceName",
+							"value": "UI"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "core-acq-input-org-contr-2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"org\": {\r\n    \"orgNum\": \"72212003\",\r\n    \"isNew\": false,\r\n\t\"iposSegmentParams\": [],\r\n    \"agreements\": [\r\n      {\r\n        \"accountNumber\": \"40102810800000010001\",\r\n        \"advPaySrvFee\": false,\r\n        \"agreemtNum\": \"React 8\",\r\n        \"isNew\": true,\r\n        \"bankId\": \"2482\",\r\n        \"billingMethod\": \"2\",\r\n        \"blockCalcDelay\": \"1\",\r\n        \"feeSource\": \"1\",\r\n        \"feeType\": \"1\",\r\n        \"addAgreemts\": [],\r\n        \"fullRemittances\": [\r\n          {\r\n            \"dayOfMonth\": 0,\r\n            \"numDaysForBlock\": 0,\r\n            \"period\": 0\r\n          }\r\n        ],\r\n        \"rates\": [],\r\n        \"shops\": [],\r\n        \"reportType\": \"2\",\r\n        \"rtsExportSchedule\": \"2\",\r\n        \"servicePaymentParams\": {\r\n          \"addAgreemtNum\": \"123321\",\r\n          \"signDt\": \"2023-06-19\",\r\n          \"startDt\": \"2023-06-19\",\r\n          \"serviceFeeWay\": \"1\",\r\n          \"debitReportTypes\": \"1\",\r\n          \"purpose\": \"Комиссия за сервисное обслуживание по договору №[НОМЕР_ДЭ] от [ДАТА_ДЭ] за период [ПЕРИОД_СО] по доп. соглашению №[НОМЕР_ДС] от [ДАТА_ДС]. Кол-во терминалов: [КОЛ_ТЕРМ]\",\r\n          \"demandAccountOnOrganization\": false,\r\n          \"ndsPaymentPurpose\": \"НДС. Комиссия за сервисное обслуживание по договору №[НОМЕР_ДЭ] от [ДАТА_ДЭ] за период [ПЕРИОД_СО]. Кол-во терминалов: [КОЛ_ТЕРМ]\",\r\n          \"daysToCreateReport\": 10,\r\n          \"paymentPurposeCash\": \"Плата за настройку и подключение Смарт терминала по договору №[НОМЕР_ДЭ] от [ДАТА_ДЭ] за период [ПЕРИОД_СО]. Кол-во терминалов: [КОЛ_ТЕРМ]\",\r\n          \"vatPaymentPurposeCash\": \"НДС. Плата за настройку и подключение Смарт терминала по договору №[НОМЕР_ДЭ] от [ДАТА_ДЭ] за период [ПЕРИОД_СО]. Кол-во терминалов: [КОЛ_ТЕРМ]\"\r\n        },\r\n        \"productDocuments\": [],\r\n        \"boxSolution\": false,\r\n        \"contractType\": \"SEMI_OFFER\",\r\n        \"notWithholdMerchant\": false,\r\n        \"productType\": \"1\",\r\n        \"firstTripRisk\": \"1\",\r\n        \"hybridPayments\": false,\r\n        \"applyPurposePayment\": false,\r\n        \"refundTransferCurrency\": \"2\",\r\n        \"multiCurrency\": false,\r\n        \"multiCurrencyOperation\": {\r\n          \"usd\": {\r\n            \"currentAccount\": \"react usd\",\r\n            \"clearingBank\": \"react usd bank\",\r\n            \"codeSwift\": \"swift react\",\r\n            \"transactionCostPayer\": \"1\",\r\n            \"calcAccounts\": false\r\n          },\r\n          \"eur\": {\r\n            \"currentAccount\": \"457\",\r\n            \"clearingBank\": \"react eur test\",\r\n            \"codeSwift\": \"swift reac\",\r\n            \"transactionCostPayer\": \"1\",\r\n            \"calcAccounts\": false\r\n          }\r\n        },\r\n        \"payerStatus\": \"1\",\r\n        \"fuelDoProcess\": false,\r\n        \"presentLifeDoProcess\": false,\r\n        \"paymentOrderForMerchants\": false,\r\n        \"unitedPaymentOrder\": false,\r\n        \"accountingAllTime\": false,\r\n        \"groupByPaymentSystems\": false,\r\n        \"reportEmails\": \"\",\r\n        \"bankPaymentAgent\": {\r\n          \"freeNdsBpa\": false,\r\n          \"acqCashoutPartBpa\": false,\r\n          \"groupCommission\": false,\r\n          \"regCashTaxation\": false,\r\n          \"addReportCash\": false\r\n        },\r\n        \"generateReport\": {\r\n          \"generateReport\": false,\r\n          \"standartReportEnabled\": false,\r\n          \"reportTypes\": [],\r\n          \"specialReportEnabled\": false\r\n        }\r\n      }\r\n    ],\r\n    \"clientDocuments\": [],\r\n    \"ratingReasons\": []\r\n  },\r\n  \"operUid\": \"d0f8e8697c544a86a33255093fce8a1b\",\r\n  \"rqTm\": \"11.08.2023 15:35:52\",\r\n  \"rqUid\": \"8d9b6a1d10e44833a671541741375851\",\r\n  \"spName\": \"ACQUIRING-UI\",\r\n  \"systemId\": \"ACQUIRING-CORE\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/input?scenario=add-organization-contract&login=user&serviceName=UI",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"input"
+					],
+					"query": [
+						{
+							"key": "scenario",
+							"value": "add-organization-contract"
+						},
+						{
+							"key": "login",
+							"value": "user"
+						},
+						{
+							"key": "serviceName",
+							"value": "UI"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
