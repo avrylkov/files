@@ -40,4 +40,5 @@ package -DskipTests -Djavacpp.platform=windows-x86_64 -f pom.xml
 
 - Обоснование в этот раз не про ценности, больше про 2ю оценку.
  На год не влияет
+--
 
