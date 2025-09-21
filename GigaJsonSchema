@@ -1,0 +1,102 @@
+    interface AssistantPrompt {
+
+        @SystemMessage("""
+                Преобразуй текст в JSON в соответствии с данной JSON Schema.
+                Если какое-либо поле отсутствует во входных данных, но в схеме для него указано значение по умолчанию (default), обязательно подставь это значение в итоговый JSON, иначе игнорируй это поле.
+                Даты преобразовать согласно формату указанному в pattern регулярном выражении.
+                Делай вывод только в JSON формате, без дополнительных текстовых строк.
+                """)
+        @UserMessage("""
+                Входящий текст {{message}}, JSON Schema {{schema}}.
+                Если какое-либо поле отсутствует во входных данных, но в схеме для него указано значение по умолчанию (default), обязательно подставь это значение в итоговый JSON, иначе игнорируй это поле.
+                """)
+        String chat(@V("schema") String schema, @V("message") String userMessage);
+    }
+---
+
+            System.out.println(assistantPrompt.chat(schema2, """
+                    Регистрация новой Организация с ИНН 1234567890 и КПП 123456789, название 'ООО Рога и копыта',
+                    номер договора 6777а, от 1 июля 2025г, спец программа 7766,
+                    торговая точка с названием 'Магазин 1', MCC 5411
+                    """));
+---
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number",
+      "description": "Уникальный идентификатор организации"
+    }, 
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Название организации"
+    },
+    "inn": {
+      "type": "number"
+    },
+    "kpp": {
+      "type": "number"
+    },
+    "contracts": {
+      "description": "Список контрактов/договоров организации",
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Уникальный идентификатор контракт/договора"
+          }, 
+          "number": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dateCreate": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "minLength": 1,
+            "description": "Дата создания контракта/договора"
+          },
+          "specialProgram": {
+            "type": "number",
+            "description": "Код спец программы",
+            "default": 1
+          },
+          "billingMethod": {
+            "type": "string",
+            "enum": [
+              "dynamic",
+              "static"
+            ],
+            "description": "Способ тарификации",
+            "default": "dynamic"
+          },
+          "shops": {
+            "description": "Список магазинов, торговых точек ТСТ",
+            "type": "array",
+            "uniqueItems": true,
+            "minItems": 1,
+            "items": {
+              "properties": {                
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Название магазина, торговая точка ТСТ"
+                },
+                "mcc": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
