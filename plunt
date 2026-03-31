@@ -1,0 +1,84 @@
+@startuml
+skinparam handwritten false
+skinparam sequenceMessageAlign center
+
+actor "Клиент" as Client
+participant "Сервис T" as ServiceT
+participant "Эквайринг" as Acquiring
+participant "ЦПЛ (Бонусы)" as Loyalty
+participant "ДЗО" as DZO
+participant "АЗС" as AZS
+
+autonumber
+
+== Создание заказа ==
+Client -> ServiceT: Нажать "К оплате"
+activate ServiceT
+ServiceT -> ServiceT: Создание заказа (ID, параметры)
+ServiceT -> Acquiring: Запрос на создание заказа (регистрация транзакции)
+activate Acquiring
+Acquiring --> ServiceT: Заказ создан (Order ID)
+deactivate Acquiring
+
+ServiceT --> Client: Открытие окна SberPay
+deactivate ServiceT
+
+== Оплата и Бонусы ==
+alt Оплата не подтверждена > 21 мин (Негативный сценарий)
+    Client -[#red]> Client: Бездействие
+    ServiceT -> ServiceT: Тайм-аут сессии
+    ServiceT -> Acquiring: Отмена заказа
+    ServiceT --> Client: Заказ отменен
+else Успешное подтверждение
+    Client -> Acquiring: Выбор карты и списание бонусов "Спасибо"
+    activate Acquiring
+    Acquiring -> Loyalty: Проверка и резервирование бонусов
+    Acquiring -> Acquiring: Холдирование денежных средств
+    Acquiring --> Client: Подтверждение оплаты (экран)
+    
+    ServiceT -> Acquiring: Запрос статуса оплаты (polling/callback)
+    Acquiring --> ServiceT: Статус: Hold (Успешно)
+    deactivate Acquiring
+
+    == Пролив топлива ==
+    ServiceT -> DZO: Запрос на создание заказа (команда на пролив)
+    activate DZO
+    DZO -> AZS: Запуск ТРК (топливораздаточной колонки)
+    AZS --> DZO: Пролив начался
+    DZO -> ServiceT: Статус: Пролив начался
+    
+    loop Ожидание завершения (Альтернативный сценарий: зависание)
+        alt Информация о завершении получена вовремя
+            AZS -> DZO: Пролив завершен (Факт. объем)
+            DZO -> ServiceT: Статус: Пролив окончен
+        else Информация о завершении НЕ получена (ДЗО молчит)
+            ServiceT -> ServiceT: Сработка внутреннего тайм-аута мониторинга
+            ServiceT -> DZO: Запрос статуса (Force check)
+            DZO -> AZS: Опрос состояния ТРК
+            AZS --> DZO: Текущее состояние (Завершено/Прервано)
+            DZO --> ServiceT: Статус: Пролив окончен (по запросу)
+        end
+    end
+    deactivate DZO
+
+    == Завершение транзакции ==
+    ServiceT -> ServiceT: Сверка (План vs Факт объем)
+    
+    ServiceT -> Acquiring: Запрос на подтверждение платежа (Capture)
+    note right: С учетом фактического пролива (возможен частичный возврат)
+    activate Acquiring
+    Acquiring -> Loyalty: Списание бонусов "Спасибо" (финализация)
+    Acquiring --> ServiceT: Платеж завершен
+    
+    ServiceT -> Acquiring: Запрос инфо по начисленным/списанным бонусам
+    Acquiring --> ServiceT: Данные по бонусам
+    
+    ServiceT -> Acquiring: Запрос ссылки на чек ОФД
+    Acquiring --> ServiceT: URL чека
+    ServiceT -> ServiceT: Сохранение ссылки в БД
+    deactivate Acquiring
+
+    ServiceT --> Client: Успешное завершение, отображение чека
+end
+
+@enduml
